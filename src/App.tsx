@@ -1,18 +1,20 @@
 // import { useEffect } from 'react';
 // import { client } from './lib/apollo';
-import { gql, useQuery } from '@apollo/client';
+// import { gql, useQuery } from '@apollo/client';
 
-const GET_LESSONS_QUERY = gql`
-  query {
-    lessons {
-      id
-      title
-      teacher {
-        name
-      }
-    }
-  }
-`;
+import { Event } from './pages/Event';
+
+// const GET_LESSONS_QUERY = gql`
+//   query {
+//     lessons {
+//       id
+//       title
+//       teacher {
+//         name
+//       }
+//     }
+//   }
+// `;
 
 interface Lesson {
   id: string;
@@ -20,9 +22,8 @@ interface Lesson {
 }
 
 function App() {
-  const { data } = useQuery<{ lessons: Lesson[] }>(GET_LESSONS_QUERY);
-
-  console.log(data);
+  // How to get data by useQuery from Apollo client
+  // const { data } = useQuery<{ lessons: Lesson[] }>(GET_LESSONS_QUERY);
 
   // How to request graphQL with useEffect
   // useEffect(() => {
@@ -32,11 +33,9 @@ function App() {
   // }, []);
 
   return (
-    <ul>
-      {data?.lessons.map((lesson: Lesson) => (
-        <li key={lesson.id}>{lesson.title}</li>
-      ))}
-    </ul>
+    <div>
+      <Event />
+    </div>
   );
 }
 
