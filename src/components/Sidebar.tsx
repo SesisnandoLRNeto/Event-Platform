@@ -1,30 +1,32 @@
 import { gql, useQuery } from '@apollo/client';
+import { useGetLessonsQuery } from '../graphql/generated';
 import { Lesson } from './Lesson';
 
-const GET_LESSON_QUERY = gql`
-  query {
-    lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
-      id
-      lessonType
-      slug
-      title
-      availableAt
-    }
-  }
-`;
+// const GET_LESSON_QUERY = gql`
+//   query {
+//     lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
+//       id
+//       lessonType
+//       slug
+//       title
+//       availableAt
+//     }
+//   }
+// `;
 
-interface GetLessonsQueryResponse {
-  lessons: {
-    id: string;
-    title: string;
-    slug: string;
-    availableAt: string;
-    lessonType: 'live' | 'class';
-  }[];
-}
+// interface GetLessonsQueryResponse {
+//   lessons: {
+//     id: string;
+//     title: string;
+//     slug: string;
+//     availableAt: string;
+//     lessonType: 'live' | 'class';
+//   }[];
+// }
 
 export function Sidebar() {
-  const { data } = useQuery<GetLessonsQueryResponse>(GET_LESSON_QUERY);
+  // const { data } = useQuery<GetLessonsQueryResponse>(GET_LESSON_QUERY); How to use useHooks from apollo without graph-codegen
+  const { data } = useGetLessonsQuery();
 
   return (
     <aside className='w-[340px] bg-gray-700 p-6 border-l border-gray-600'>
